@@ -2,6 +2,7 @@ import express from 'express';
 import {join, dirname} from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import productsRouter from './src/routes/products.routes.js';
 
 //const __filename = fileURLToPath(import.meta.url);
 //const __dirname = dirname(__filename);
@@ -44,12 +45,15 @@ app.get('/user/:id', (req, res) => {
     res.send(`Informacion del userId: ${userId}`)
 })
 
-app.get('/products', (req, res) => {
+/*app.get('/products', (req, res) => {
     const category = req.query.category;
     const price = req.query.price;
 
     res.send(`Categoria: ${category}, precio: ${price}`);
-})
+})*/
+
+//Usando express router
+app.use('/api', productsRouter);
 
 app.use((req, res, next) => {
     res.status(404).send('Recurso no encontrado o ruta invalida');
