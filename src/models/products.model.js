@@ -1,18 +1,42 @@
-import fs from 'fs';
-import path from 'path';
+import { db } from "../data/data.js";
+import {
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    deleteDoc,
+    doc,
+    updateDoc
+} from "firebase/firestore";
 
-const __dirname = import.meta.dirname;
+const productsCollection = collection(db, 'products');
 
-//Ruta al archivo json que simula bbdd
-const dataPath = path.join(__dirname, '../data/products.json');
+export async function getProductById(id) {
+    const productDoc = await getDoc(doc(productsCollection, id));
+    if(productDoc.exists()){
+        return productDoc.data();
+    } else {
+        return null;
+    }
+}
 
-//Metodo para buscar un producto por su id
-export function getProductById(id){
-    const products = this.getAllProducts();
-    return products.find(product => product.id == id);   
+export async function getAllProducts() {
+    const querySnapshot = await getDocs(productsCollection);
+    const products = [];
+    querySnapshot.forEach((doc)=> {
+        products.push( {id: doc.id, ...doc.data() });
+    });
+    return products;
 };
 
-export function getAllProducts(){
-    const data = fs.readFileSync(dataPath, 'utf-8');
-    return JSON.parse(data);
-};
+export async function saveProduct(product) {
+    await addDoc(productsCollection, product);
+}
+
+export async function updateProduct(name, price, stock) {
+    await updateDoc(productsCollection, name, price, stock);
+}
+
+export async function deleteProduct(id) {
+    await deleteDoc(doc(productsCollection, id)); 
+}
