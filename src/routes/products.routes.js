@@ -10,12 +10,6 @@ router.get('/products/:id', productController.getProductById);
 
 router.post('/create', productController.createProduct);
 
-router.put('/update/:id', productController.updateProduct);
-
 router.delete('/delete/:id', productController.deleteProduct);
-
-router.post('/products', (req, res) => {
-    res.send('Producto creado');
-})
 
 export default router;

@@ -6,7 +6,6 @@ import {
     addDoc,
     deleteDoc,
     doc,
-    updateDoc
 } from "firebase/firestore";
 
 const productsCollection = collection(db, 'products');
@@ -31,10 +30,6 @@ export async function getAllProducts() {
 
 export async function createProduct(product) {
     await addDoc(productsCollection, product);
-}
-
-export async function updateProduct(name, price, stock) {
-    await updateDoc(productsCollection, name, price, stock);
 }
 
 export async function deleteProduct(id) {

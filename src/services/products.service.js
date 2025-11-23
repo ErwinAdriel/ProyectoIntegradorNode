@@ -15,11 +15,6 @@ export const createProduct = async (productData) => {
     return createProduct;
 }
 
-export const updateProduct = async (name, price, stock) => {
-    const updateProduct = await productModels.updateProduct(name, price, stock);
-    return updateProduct;
-}
-
 export const deleteProduct = async (id) => {
     const deleteProduct = await productModels.deleteProduct(id);
     return deleteProduct;

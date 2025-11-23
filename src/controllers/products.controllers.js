@@ -31,20 +31,6 @@ export const createProduct = async (req, res) => {
     res.status(200).json({ menssage: 'Producto creado exitosamente!' });
 }
 
-export const updateProduct = async (req, res) => {
-    const id = req.params.id;
-    const name = req.params.name;
-    const price = req.params.price;
-    const stock = req.params.stock;
-    const productUpdated = await productService.updateProduct(name, price, stock);
-    
-    if(productUpdated){
-        res.status(200).json({ menssage: 'Producto editado exitosamente!' });
-    } else {
-        res.status(404).json({ menssage: 'Producto no encontrado!' });
-    }
-}
-
 export const deleteProduct = async (req, res) => {
     const id = req.params.id;
     const product = await productService.getProductById(id);
