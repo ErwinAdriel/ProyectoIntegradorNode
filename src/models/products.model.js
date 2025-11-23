@@ -29,7 +29,7 @@ export async function getAllProducts() {
     return products;
 };
 
-export async function saveProduct(product) {
+export async function createProduct(product) {
     await addDoc(productsCollection, product);
 }
 

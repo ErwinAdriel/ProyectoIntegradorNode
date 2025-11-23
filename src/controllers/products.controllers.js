@@ -20,10 +20,16 @@ export const getProductById = async (req, res) => {
     }
 }
 
-/*export const createProduct = async (req, res) => {
-    const { name, price, stock } = req.body;
-    const productCreated = await productService.createProduct()
-}*/
+export const createProduct = async (req, res) => {
+    const {name, price, stock} = req.body;
+    const newProduct = {
+        name,
+        price,
+        stock
+    };
+    await productService.createProduct(newProduct);
+    res.status(200).json({ menssage: 'Producto creado exitosamente!' });
+}
 
 export const updateProduct = async (req, res) => {
     const id = req.params.id;

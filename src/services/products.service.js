@@ -11,8 +11,8 @@ export const getProductById = async (id) => {
 };
 
 export const createProduct = async (productData) => {
-    const { name, price, stock} = productData;
-    return productModels.saveProduct(name, price, stock);
+    const createProduct = productModels.createProduct(productData);
+    return createProduct;
 }
 
 export const updateProduct = async (name, price, stock) => {

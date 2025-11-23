@@ -1,26 +1,20 @@
 import express from 'express';
-import {join, dirname} from 'path';
-import { fileURLToPath } from 'url';
 import cors from 'cors';
 import productsRouter from './src/routes/products.routes.js';
-
-//const __filename = fileURLToPath(import.meta.url);
-//const __dirname = dirname(__filename);
 
 const app = express();
 
 //app.use(express.static('public'));
-
 //app.use(express.static(join(__dirname, 'public')));
 
-const corsOptions = {
+//Configuracion avanzada: Permitir dominios especificos
+/*const corsOptions = {
     origin: ['https://example.com', 'https://anotherdomain.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
-
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));*/
 
 app.get('/ping', (req, res) => {
     res.send('/pong');
@@ -47,20 +41,21 @@ app.get('/user/:id', (req, res) => {
     res.send(`Informacion del userId: ${userId}`)
 })
 
-/*app.get('/products', (req, res) => {
-    const category = req.query.category;
-    const price = req.query.price;
-
-    res.send(`Categoria: ${category}, precio: ${price}`);
-})*/
-
 //Usando express router
+//Configuracion basica: Permitir todos los origines
+app.use(cors());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
+
 app.use('/api', productsRouter);
 
 app.use((req, res, next) => {
     res.status(404).send('Recurso no encontrado o ruta invalida');
 })
 
-app.listen(3000, () => {
-    console.log('Servidor en http://localhost:3000');
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor en http://localhost:${PORT}`);
 })
