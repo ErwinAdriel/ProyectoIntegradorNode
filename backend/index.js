@@ -3,6 +3,7 @@ import cors from 'cors';
 import productsRouter from './src/routes/products.routes.js';
 import authRouter from './src/routes/auth.routes.js';
 import bodyParser from 'body-parser';
+import { authentication } from './src/middleware/authentication.js';
 
 const app = express();
 
@@ -23,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
 
-app.use('/api', productsRouter);
+app.use('/api', authentication, productsRouter);
 
 app.use('/auth', authRouter);
 
