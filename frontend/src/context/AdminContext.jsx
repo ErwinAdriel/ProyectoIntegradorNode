@@ -5,13 +5,6 @@ export const AdminContext = createContext();
 
 export const AdminProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    img: "",
-    description: "",
-    price: "",
-  });
-
   const [carga, setCarga] = useState(true);
   const [isCartOpen, setCartOpen] = useState(false);
   const [formEditOpen, setFormEditOpen] = useState(false);
@@ -121,7 +114,7 @@ export const AdminProvider = ({ children }) => {
     if ((await confirm).isConfirmed) {
       try {
         const respuesta = await fetch(
-          `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${producto.id}`,
+          `http://localhost:3000/api/update/${producto.id}`,
           {
             method: "PUT",
             headers: {

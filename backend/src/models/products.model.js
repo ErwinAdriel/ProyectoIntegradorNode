@@ -6,6 +6,7 @@ import {
     addDoc,
     deleteDoc,
     doc,
+    updateDoc,
 } from "firebase/firestore";
 
 const productsCollection = collection(db, 'products');
@@ -26,10 +27,23 @@ export async function getAllProducts() {
         products.push( {id: doc.id, ...doc.data() });
     });
     return products;
-};
+}
 
 export async function createProduct(product) {
     await addDoc(productsCollection, product);
+}
+
+export async function updateProduct(id, productData) {
+    const productRef = doc(productsCollection, id);
+    const productDoc = await getDoc(productRef);
+
+    if(!productDoc.exists()){
+        return null;
+    }
+
+    await updateDoc(productRef, productData);
+
+    return{ id, ...productDoc.data(), ...productData };
 }
 
 export async function deleteProduct(id) {

@@ -33,6 +33,25 @@ export const createProduct = async (req, res) => {
     res.status(200).json({ menssage: 'Producto creado exitosamente!' });
 }
 
+export const updateProduct = async (req, res) => {
+    const id = req.params.id;
+    const {name, price, stock, img, description} = req.body;
+    const product = await productService.getProductById(id);
+    if(product){
+        const updatedProdut = {
+            name: name || product.name,
+            price: price || product.price,
+            stock: stock || product.stock,
+            img: img || product.img,
+            description: description || product.description
+        }
+        await productService.updateProduct(id, updatedProdut);
+        res.status(200).json({ menssage: 'Producto actualizado exitosamente!' });
+    } else{
+        res.status(404).json({ menssage: 'Producto no encontrado!' });
+    }
+}
+
 export const deleteProduct = async (req, res) => {
     const id = req.params.id;
     const product = await productService.getProductById(id);
