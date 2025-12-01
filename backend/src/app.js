@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //Routes
-app.use('/api', authentication, productsRouter);
+app.use('/api', productsRouter);
 app.use('/auth', authRouter);
 
 //404 handler

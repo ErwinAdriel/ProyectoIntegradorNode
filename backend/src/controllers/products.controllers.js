@@ -21,11 +21,13 @@ export const getProductById = async (req, res) => {
 }
 
 export const createProduct = async (req, res) => {
-    const {name, price, stock} = req.body;
+    const {name, price, stock, img, description} = req.body;
     const newProduct = {
         name,
         price,
-        stock
+        stock,
+        img, 
+        description
     };
     await productService.createProduct(newProduct);
     res.status(200).json({ menssage: 'Producto creado exitosamente!' });
