@@ -1,31 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
-  const [producto, setProductos] = useState({
-    name: "",
-    price: "",
-    description: "",
-    img: "",
-    stock: "",
-  });
+export default function EditarProducto({
+  isOpen,
+  onClose,
+  productoSeleccionado,
+  onActualizar,
+}) {
+  const [producto, setProducto] = useState(productoSeleccionado);
+  useEffect(() => {
+    setProducto(productoSeleccionado);
+  }, [productoSeleccionado]);
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProductos({ ...producto, [name]: value });
+    setProducto({ ...producto, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAgregar(producto);
-    setProductos({
-      name: "",
-      price: "",
-      description: "",
-      img: "",
-      stock: "",
-    });
+    onActualizar(producto);
   };
 
   return (
@@ -34,7 +30,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
       <div class="fixed inset-y-20 left-0 sm:inset-y-[20%] sm:left-[10%] lg:left-[25%]">
         <div class="bg-white p-5">
           <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 border-gray-900">
-            <h3 class="text-lg font-semibold text-black">Añadir Producto</h3>
+            <h3 class="text-lg font-semibold text-black">Editar Producto</h3>
             <button
               type="button"
               onClick={onClose}
@@ -55,11 +51,12 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   id="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
                   placeholder="Example name"
-                  value={producto.name}
+                  value={producto.name || ""}
                   onChange={handleChange}
                 />
                 {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
+
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
                   Precio mayor a 0
@@ -70,7 +67,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   id="price"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
                   placeholder="$1222"
-                  value={producto.price}
+                  value={producto.price || ""}
                   onChange={handleChange}
                 />
                 {errors.price && <p style={{ color: "red" }}>{errors.price}</p>}
@@ -84,8 +81,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   id="img"
                   name="img"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400"
-                  placeholder="https://www.venex.com.ar/products_images/1738669809_1.jpg"
-                  value={producto.img}
+                  value={producto.img || ""}
                   onChange={handleChange}
                 />
                 {errors.img && <p style={{ color: "red" }}>{errors.img}</p>}
@@ -99,28 +95,13 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   name="description"
                   rows="4"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
-                  placeholder="Ingrese una descripcion mínima de 10 caracteres."
-                  value={producto.description}
+                  placeholder="Ingrese una descripcion del producto"
+                  value={producto.description || ""}
                   onChange={handleChange}
                 ></textarea>
                 {errors.description && (
                   <p style={{ color: "red" }}>{errors.description}</p>
                 )}
-              </div>
-              <div>
-                <label class="block mb-2 text-sm font-medium text-black">
-                  Stock
-                </label>
-                <input
-                  type="number"
-                  name="stock"
-                  id="stock"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
-                  placeholder="100"
-                  value={producto.stock}
-                  onChange={handleChange}
-                />
-                {errors.stock && <p style={{ color: "red" }}>{errors.stock}</p>}
               </div>
             </div>
             <div class="w-full">
@@ -128,7 +109,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                 type="submit"
                 class="w-full text-white duration-300 ease-in-out bg-blue-700 hover:bg-blue-800 font-medium cursor-pointer text-sm py-2.5 "
               >
-                Agregar
+                Editar
               </button>
             </div>
           </form>

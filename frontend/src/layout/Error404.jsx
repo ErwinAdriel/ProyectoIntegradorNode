@@ -1,9 +1,15 @@
-import React from "react"
 import { Link } from "react-router-dom"
+import { useEffect } from "react";
 
 export default function Error(){
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return(
-    <main class="grid min-h-full place-items-center bg-white px-6 py-24 lg:px-8">
+    <div class=" bg-white px-6 py-24 pt-38">
+      <title>Error 404 | AvComputing</title>
       <div class="text-center">
         <p class="font-semibold text-8xl text-slate-900">404</p>
         <h1 class="mt-4 text-5xl font-semibold tracing-tight text-balance text-gray-900 sm:text-5xl">Página no encontrada</h1>
@@ -13,6 +19,6 @@ export default function Error(){
           <Link to='/contacto' class="text-sm font-semibold text-gray-900">Contacto soporte <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

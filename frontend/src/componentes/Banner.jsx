@@ -34,15 +34,15 @@ export default function Banner(){
     };
 
     return(
-        <div class="w-full xl:h-[400px] h-45">
-                <div class="xl:h-full w-full relative">
-                    <div class="item w-full xl:h-[400px] h-45">
+        <div class="w-full xl:h-[400px] h-45 relative">
+                <div class="xl:h-full w-full">
+                    <div class="w-full xl:h-[400px] h-45">
                         <div class="bg-cover bg-center bg-no-repeat h-full w-full duration-500" style={{backgroundImage: `url(${slides[actualIndex].url})`}} >
                         </div>
                     </div>
                     <div class="absolute left-0 top-0 w-full h-full items-center justify-between flex">
-                        <button onClick={beforeSlide} type="button" class="ml-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out">< MdOutlineNavigateBefore/></button>
-                        <button onClick={nextSlide} type="button" class="mr-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out">< MdOutlineNavigateNext /></button>
+                        <button onClick={beforeSlide} type="button" class="ml-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out cursor-pointer">< MdOutlineNavigateBefore/></button>
+                        <button onClick={nextSlide} type="button" class="mr-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out cursor-pointer">< MdOutlineNavigateNext /></button>
                     </div>
                     <div class="justify-center flex absolute w-full text-white bottom-4">
                         {slides.map((slide, slideIndex) => (

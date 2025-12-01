@@ -1,39 +1,45 @@
-import React from "react";
+import { useContext } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
-export default function Producto({ product, addToCart }) {
+export default function Producto({ product }) {
+  const { handleAddToCart } = useContext(CartContext);
+
   return (
     <div
-      class="w-full h-full relative group overflow-hidden shadow-xl/10"
+      class="w-full h-full border-1 rounded-xl border-slate-300 hover:border-slate-900 overflow-hidden transition delay-150 duration-300 ease-in-out"
       key={product.id}
     >
       <Link to={`/productos/${product.id}`}>
-        <div class="w-full h-[260px] mt-4 bg-cover bg-center bg-no-repeat">
+        <div>
           <img src={`${product.img}`} alt={product.name} />
         </div>
-        <div class="flex justify-center h-[102px] items-center relative  border-t border-gray-300">
-          <div>
-            <p class="mb-2.5 text-base font-600 text-center text-gray-500  ">
-              {product.name}
-            </p>
-            <div class="flex justify-center">
-              <span class="flex font-medium text-gray-800 text-2xl text-center font-600">
-                $ {product.price}
-              </span>
-            </div>
-          </div>
-        </div>
       </Link>
-      <div class="flex justify-center h-[5px] w-[50%] mx-auto items-center relative">
-        <div class="absolute w-full border flex justify-center items-center top-5 group-hover:top-[-60px] transition-all duration-500 ease-in-out">
+      <div class="flex-col justify-center items-center border-t border-gray-300">
+        <div class="flex justify-center mt-4">
+          <span class="text-lg sm:text-sm text-slate-800 font-extralight">
+            {product.name}
+          </span>
+        </div>
+        <div class="flex justify-center mt-1">
+          <span class="font-bold text-xl sm:text-lg font-600">
+            $ {product.price}
+          </span>
+        </div>
+        <div class="flex flex-col my-4 space-y-2">
+          <Link to={`/productos/${product.id}`} class="w-[70%] mx-auto">
+            <div class="cursor-pointer flex justify-center bg-slate-300 hover:bg-slate-400 py-1 transition duration-200 ease-in-out">
+              <span>Ver mas</span>
+            </div>
+          </Link>
           <button
-            onClick={() => addToCart(product)}
+            onClick={() => handleAddToCart(product)}
             type="button"
-            class="bg-slate-900 w-[100%] flex items-center justify-center cursor-pointer"
+            class="mx-auto w-[70%]"
           >
-            <div class="flex text-white p-4 space-x-3 text-1xl">
-              <span class="my-auto">
+            <div class="cursor-pointer flex justify-center bg-slate-900 text-white hover:bg-slate-950 py-1 space-x-1 transition duration-200 ease-in-out">
+              <span class="my-auto text-xl">
                 <IoCartOutline />
               </span>
               <span>Comprar</span>

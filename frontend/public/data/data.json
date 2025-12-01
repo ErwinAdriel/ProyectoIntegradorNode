@@ -1,10 +1,10 @@
 [
-    {"id":1, "name": "NOTEBOOK ASUS E410MA", "price": 419569, "img": "/img/1.jpg", "stock": 10},
-    {"id":2, "name": "NOTEBOOK ASUS TUF", "price": 2000000, "img": "/img/2.jpg", "stock": 7},
-    {"id":3, "name": "PC AMD RYZEN 5", "price": 387299, "img": "/img/3.jpg", "stock": 7},
-    {"id":4, "name": "TECLADO REDRAGON K503", "price": 29090, "img": "/img/4.png", "stock": 15},
-    {"id":5, "name": "REDRAGON H120", "price": 20990, "img": "/img/5.png", "stock": 20},
-    {"id":6, "name": "NOBLEX 94NXSM2200", "price": 146999, "img": "/img/6.jpg", "stock": 5},
-    {"id":7, "name": "SAMSUNG T350", "price": 169999, "img": "/img/7.jpg", "stock": 7},
-    {"id":8, "name": "LG 24GS60F", "price": 261999, "img": "/img/8.png", "stock": 10}
+    {"id":1, "name": "NOTEBOOK ASUS E410MA", "price": 419569, "description": "Esto es una descripcion", "img": "/img/1.jpg", "stock": 10},
+    {"id":2, "name": "NOTEBOOK ASUS TUF", "price": 2000000, "description": "Esto es una descripcion", "img": "/img/2.jpg", "stock": 7},
+    {"id":3, "name": "PC AMD RYZEN 5", "price": 387299, "description": "Esto es una descripcion", "img": "/img/3.jpg", "stock": 7},
+    {"id":4, "name": "TECLADO REDRAGON K503", "price": 29090, "description": "Esto es una descripcion", "img": "/img/4.png", "stock": 15},
+    {"id":5, "name": "REDRAGON H120", "price": 20990, "description": "Esto es una descripcion", "img": "/img/5.png", "stock": 20},
+    {"id":6, "name": "NOBLEX 94NXSM2200", "price": 146999, "description": "Esto es una descripcion", "img": "/img/6.jpg", "stock": 5},
+    {"id":7, "name": "SAMSUNG T350", "price": 169999, "description": "Esto es una descripcion", "img": "/img/7.jpg", "stock": 7},
+    {"id":8, "name": "LG 24GS60F", "price": 261999, "description": "Esto es una descripcion", "img": "/img/8.png", "stock": 10}
 ]

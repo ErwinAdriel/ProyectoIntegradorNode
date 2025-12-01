@@ -10,14 +10,14 @@ import { CardCategoria } from "./CardCategoria";
 
 export default function Categorias() {
   const categorias = [
-    { name: "Celular", url: c1 },
-    { name: "Audio", url: c2 },
-    { name: "Escritorio", url: c3 },
-    { name: "Monitor", url: c4 },
-    { name: "Notebook", url: c5 },
-    { name: "Teclado", url: c6 },
-    { name: "TV", url: c7 },
-    { name: "Mouse", url: c8 },
+    { id: 1, name: "Celular", url: c1 },
+    { id: 2, name: "Audio", url: c2 },
+    { id: 3, name: "Escritorio", url: c3 },
+    { id: 4, name: "Monitor", url: c4 },
+    { id: 5, name: "Notebook", url: c5 },
+    { id: 6, name: "Teclado", url: c6 },
+    { id: 7, name: "TV", url: c7 },
+    { id: 8, name: "Mouse", url: c8 },
   ];
 
   return (
@@ -26,7 +26,7 @@ export default function Categorias() {
         <div class="mx-auto container border-b-1 border-gray-400 pb-10">
           <div class="grid xl:grid-cols-8 sm:grid-cols-4 grid-cols-2 gap-10">
             {categorias.map((categoria) => (
-              <CardCategoria categoria={categoria} />
+              <CardCategoria key={categoria.id} categoria={categoria} />
             ))}
           </div>
         </div>
