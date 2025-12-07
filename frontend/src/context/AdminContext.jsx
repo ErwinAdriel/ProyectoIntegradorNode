@@ -81,10 +81,14 @@ export const AdminProvider = ({ children }) => {
 
     if ((await confirm).isConfirmed) {
       try {
+        const token = localStorage.getItem("token");
         const respuesta = await fetch(
           `http://localhost:3000/api/delete/${id}`,
           {
             method: "DELETE",
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
           }
         );
         if (!respuesta.ok) {
@@ -113,12 +117,14 @@ export const AdminProvider = ({ children }) => {
 
     if ((await confirm).isConfirmed) {
       try {
+        const token = localStorage.getItem("token");
         const respuesta = await fetch(
           `http://localhost:3000/api/update/${producto.id}`,
           {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify(producto),
           }
@@ -126,7 +132,7 @@ export const AdminProvider = ({ children }) => {
         if (!respuesta.ok) {
           throw Error("Error al actualizar el producto");
         }
-        const data = await respuesta.json();
+        await respuesta.json();
         Swal.fire(":)", "Producto actualizado exitosamente!", "success");
         setFormEditOpen(false);
         setSeleccionado(null);

@@ -86,7 +86,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("isAuth");
     localStorage.removeItem("role");
     localStorage.removeItem("token");
-    localStorage.removeItem("idSession");
     navigate("/login");
   };
 
