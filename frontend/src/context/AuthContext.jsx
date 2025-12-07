@@ -37,35 +37,29 @@ export const AuthProvider = ({ children }) => {
       setErrors(validationErrors);
       return;
     }
-
     try {
-      const res = await fetch("data/users.json");
-      const users = await res.json();
 
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
+      const res = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, password}),
+      });
 
-      if (!foundUser) {
-        setErrors({ email: "credenciales inválidas" });
-        console.log(errors);
-      } else {
-        console.log(foundUser.role);
-
-        if (foundUser.role === "admin") {
-          setIsAuth(true);
-          localStorage.setItem("isAuth", true);
-          localStorage.setItem("role", foundUser.role);
-          setRole(foundUser.role);
-          navigate("/admin");
-        }
-        if (foundUser.role === "client") {
-          setIsAuth(true);
-          localStorage.setItem("isAuth", true);
-          localStorage.setItem("role", foundUser.role);
-          setRole(foundUser.role);
-          navigate("/");
-        }
+      if(res.ok){
+        const data = await res.json();
+        const token = data.token;
+        const userRole = data.user.role;
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", userRole);
+        localStorage.setItem("isAuth", true);
+        setIsAuth(true);
+        setRole(userRole);
+        navigate(userRole === "admin" ? "/admin" : "/");
+      } else{
+        const errorData = await res.json();
+        setErrors({email: errorData.message || "credenciales inválidas"});
       }
     } catch (err) {
       console.log(err);
@@ -75,8 +69,24 @@ export const AuthProvider = ({ children }) => {
 
   const logoutSession = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    fetch(`http://localhost:3000/auth/logout/${token}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log("Cierre de sesión exitoso");
+        } else {
+          console.log("Error al cerrar sesión");
+        } })
+      .catch((err) => {
+        console.log("Error de red al cerrar sesión", err);
+      });
     setIsAuth(false);
     localStorage.removeItem("isAuth");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+    localStorage.removeItem("idSession");
     navigate("/login");
   };
 
