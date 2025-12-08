@@ -15,6 +15,10 @@ app.use(bodyParser.json());
 app.use('/api', productsRouter);
 app.use('/auth', authRouter);
 
+app.get('/', (req, res) => {
+    res.send('Bienvenido a la API de Back-End');
+});
+
 //404 handler
 app.use((req, res, next) => {
     res.status(404).send('Recurso no encontrado o ruta invalida');
