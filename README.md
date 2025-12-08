@@ -65,6 +65,17 @@ npm run start o npm run dev
 ```bash
 npm run dev
 ```
+## Credenciales
+```bash
+- Cliente
+  email: client@email.com
+  password: client123
+```
+```bash
+- Administrador
+  email: admin@email.com
+  password: admin123
+```
 ## 🌐 Deploy 
 Este proyecto está desplegado en Vercel:
 - BackEnd: https://backend-avcomputing.vercel.app
