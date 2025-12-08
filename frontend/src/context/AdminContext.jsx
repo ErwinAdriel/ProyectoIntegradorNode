@@ -11,7 +11,7 @@ export const AdminProvider = ({ children }) => {
   const [seleccionado, setSeleccionado] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products")
+    fetch("https://backend-avcomputing.vercel.app/api/products")
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         setTimeout(() => {
@@ -31,7 +31,7 @@ export const AdminProvider = ({ children }) => {
   const agregarProducto = async (product) => {
     try {
       const respuesta = await fetch(
-        "http://localhost:3000/api/create",
+        "https://backend-avcomputing.vercel.app/api/create",
         {
           method: "POST",
           headers: {
@@ -59,7 +59,7 @@ export const AdminProvider = ({ children }) => {
   const mostrarProductos = async () => {
     try {
       const respuesta = await fetch(
-        "http://localhost:3000/api/products"
+        "https://backend-avcomputing.vercel.app/api/products"
       );
       const data = await respuesta.json();
       setProducts(data);
@@ -83,7 +83,7 @@ export const AdminProvider = ({ children }) => {
       try {
         const token = localStorage.getItem("token");
         const respuesta = await fetch(
-          `http://localhost:3000/api/delete/${id}`,
+          `https://backend-avcomputing.vercel.app/api/delete/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -119,7 +119,7 @@ export const AdminProvider = ({ children }) => {
       try {
         const token = localStorage.getItem("token");
         const respuesta = await fetch(
-          `http://localhost:3000/api/update/${producto.id}`,
+          `https://backend-avcomputing.vercel.app/api/update/${producto.id}`,
           {
             method: "PUT",
             headers: {

@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products")
+    fetch("https://backend-avcomputing.vercel.app/api/products")
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         setTimeout(() => {

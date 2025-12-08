@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     }
     try {
 
-      const res = await fetch("http://localhost:3000/auth/login", {
+      const res = await fetch("https://backend-avcomputing.vercel.app/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   const logoutSession = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:3000/auth/logout/${token}`, {
+    fetch(`https://backend-avcomputing.vercel.app/auth/logout/${token}`, {
       method: "DELETE",
     })
       .then((res) => {
